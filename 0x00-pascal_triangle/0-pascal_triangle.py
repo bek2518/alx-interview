@@ -20,3 +20,13 @@ def pascal_triangle(n):
             inner_list.append(factorial(i)//(factorial(j)*factorial(i-j)))
         outer_list.append(inner_list)
     return outer_list
+
+
+def factorial(n):
+    '''
+    handles factorial
+    '''
+    if n == 0:
+        return (1)
+    else:
+        return n * factorial(n-1)
