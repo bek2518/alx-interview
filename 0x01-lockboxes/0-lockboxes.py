@@ -21,9 +21,10 @@ def canUnlockAll(boxes):
         the tracker or not recursively
         '''
         for key in boxes[boxNumber]:
-            if tracker[key] == 'locked':
-                tracker[key] = 'unlocked'
-                recursive_function(key)
+            if key < sizeOfBox:
+                if tracker[key] == 'locked':
+                    tracker[key] = 'unlocked'
+                    recursive_function(key)
 
     recursive_function(0)
 
