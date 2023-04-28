@@ -2,6 +2,8 @@
 '''
 A method that determines if all boxes can be opened
 '''
+import sys
+sys.setrecursionlimit(1500)
 
 
 def canUnlockAll(boxes):
@@ -11,10 +13,6 @@ def canUnlockAll(boxes):
     '''
     sizeOfBox = len(boxes)
     tracker = [sizeOfBox]
-
-    if sizeOfBox == 0:
-        return False
-
     tracker[0] = 'unlocked'
     for n in range(1, sizeOfBox):
         tracker.append('locked')
