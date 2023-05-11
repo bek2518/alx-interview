@@ -4,14 +4,14 @@ Python script that reads stdin line by line and computes metrics
 After every 10 lines and/or a keyboard interruption prints the
 statistics from the begining
 '''
+import sys
 
 
 count = 0
 file_size = 0
 status_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 
-while True:
-    line = input()
+for line in sys.stdin:
     try:
         size = int(line.split()[-1])
         status_code = int(line.split()[-2])
