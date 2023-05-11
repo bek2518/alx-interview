@@ -30,6 +30,10 @@ for line in sys.stdin:
     try:
         ip, _, _, _, request_method, project, request_type,\
             status_code, size = line.split(' ')
+        request = request_method + ' ' + project + ' ' + request_type
+
+        if request != '"GET /projects/260 HTTP/1.1"':
+            continue
 
         if len(line.split(' ')) == 9:
             size = int(size)
