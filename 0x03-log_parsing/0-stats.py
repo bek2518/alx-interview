@@ -26,20 +26,20 @@ def interrupt_handler(signal, frame):
 signal.signal(signal.SIGINT, interrupt_handler)
 
 
-
 for line in sys.stdin:
     try:
         ip, _, _, _, request_method, project, request_type,\
-            status_code, size = line.split()
+            status_code, size = line.split(' ')
 
-        size = int(size)
-        status_code = int(status_code)
+        if len(line.split(' ')) == 9:
+            size = int(size)
+            status_code = int(status_code)
 
-        for key in status_count.keys():
-            if status_code == key:
-                status_count[key] += 1
-        file_size += size
-        count += 1
+            for key in status_count.keys():
+                if status_code == key:
+                    status_count[key] += 1
+            file_size += size
+            count += 1
 
     except Exception:
         continue
