@@ -42,3 +42,9 @@ except KeyboardInterrupt:
         if status_count[key] != 0:
             print('{}: {}'.format(key, value))
     raise
+
+else:
+    print('File size: {}'.format(file_size))
+    for key, value in sorted(status_count.items()):
+        if status_count[key] != 0:
+            print('{}: {}'.format(key, value))
