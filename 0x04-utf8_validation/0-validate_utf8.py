@@ -9,11 +9,15 @@ def validUTF8(data):
     Method that recieves list of intgers data, which each integer represent
     1 byte of data and determines if valid UTF-8
     '''
-    if max(data) > 255:
+    if len(data) == 0:
+        return False
+    if max(data) > 255 or min(data) < 0:
         return False
 
     binary_data = []
     for i in range(len(data)):
+        if type(data[i]) != int:
+            return False
         binary_data.append(bin(data[i])[2:].zfill(8))
 
     i = 0
