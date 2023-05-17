@@ -9,38 +9,51 @@ def validUTF8(data):
     Method that recieves list of intgers data, which each integer represent
     1 byte of data and determines if valid UTF-8
     '''
-    if len(data) == 0:
+    if not data:
         return False
 
     if max(data) > 255:
         return False
 
+    binary_data = []
+    for i in range(len(data)):
+        if type(data[i]) != int:
+            return False
+        binary_data.append(bin(data[i])[2:].zfill(8))
+
     i = 0
-    while i < len(data):
+    while i < len(binary_data):
         try:
-            if data[i] < 128:
+            if binary_data[i][0] == '0':
                 i += 1
-            
-            elif 128 <= data[i] < 192:
+
+            elif binary_data[i][0:2] == '10':
                 return False
- 
-            elif 192 <= data[i] <= 223:
-                if not (128 <= data[i + 1] < 192):
+
+            elif binary_data[i][0:3] == '110':
+                if (binary_data[i] == '11000000' and
+                        binary_data[i+1][0:2] == '10') or \
+                        (binary_data[i] == '11000001' and
+                         binary_data[i+1][0:2] == '10'):
+                    return False
+                if (binary_data[i + 1][0:2] != '10'):
                     return False
                 i += 2
 
-            elif 224 <= data[i] <= 239:
-                if not (128 <= data[i + 1] < 192 and
-                    128 <= data[i + 2] < 192):
+            elif binary_data[i][0:4] == '1110':
+                if (binary_data[i + 1][0:2] != '10' and
+                        binary_data[i + 2][0:2] != '10'):
                     return False
                 i += 3
 
-            elif 240 <= data[i] <= 244:
-                if not (128 <= data[i + 1] < 192 and
-                    128 <= data[i + 2] < 192 and
-                    128 <= data[i + 3] < 192):
+            elif binary_data[i][0:5] == '11110':
+                if (binary_data[i + 1][0:2] != '10' and
+                        binary_data[i + 2][0:2] != '10' and
+                        binary_data[i + 3][0:2] != '10'):
                     return False
                 i += 4
+            else:
+                return False
 
         except Exception:
             return False
