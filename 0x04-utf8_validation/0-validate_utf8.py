@@ -44,5 +44,4 @@ def validUTF8(data):
                 return False
             i += 4
 
-
     return True
