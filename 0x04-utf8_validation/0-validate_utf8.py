@@ -46,7 +46,7 @@ def validUTF8(data):
                     return False
                 i += 3
 
-            elif binary_data[i][0:5] == '11110':
+            elif binary_data[i][0:5] == '1111':
                 if (binary_data[i + 1][0:2] != '10' and
                         binary_data[i + 2][0:2] != '10' and
                         binary_data[i + 3][0:2] != '10'):
