@@ -36,12 +36,16 @@ def validUTF8(data):
                 if not (128 <= data[i + 1] < 192 and
                         128 <= data[i + 2] < 192):
                     return False
+                if (data[i] == 224 and data[i + 1] < 160):
+                    return False
                 i += 3
 
             elif 240 <= data[i] <= 247:
                 if not (128 <= data[i + 1] < 192 and
                         128 <= data[i + 2] < 192 and
                         128 <= data[i + 3] < 192):
+                    return False
+                if (data[i] == 240 and data[i + 1] < 144):
                     return False
                 i += 4
 
