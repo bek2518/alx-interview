@@ -12,7 +12,7 @@ def validUTF8(data):
     if not data:
         return False
 
-    if max(data) > 255:
+    if max(data) > 247:
         return False
 
     i = 0
