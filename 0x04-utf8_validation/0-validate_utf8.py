@@ -12,48 +12,32 @@ def validUTF8(data):
     if not data:
         return False
 
-    if max(data) > 255:
-        return False
-
-    binary_data = []
-    for i in range(len(data)):
-        if type(data[i]) != int:
-            return False
-        binary_data.append(bin(data[i])[2:].zfill(8))
-
     i = 0
-    while i < len(binary_data):
+    while i < len(data):
         try:
-            if binary_data[i][0] == '0':
+            if data[i] < 128:
                 i += 1
 
-            elif binary_data[i][0:2] == '10':
+            elif 128 <= data[i] < 192:
                 return False
 
-            elif binary_data[i][0:3] == '110':
-                if (binary_data[i] == '11000000' and
-                        binary_data[i+1][0:2] == '10') or \
-                        (binary_data[i] == '11000001' and
-                         binary_data[i+1][0:2] == '10'):
-                    return False
-                if (binary_data[i + 1][0:2] != '10'):
+            elif 192 <= data[i] <= 223:
+                if not (128 <= data[i + 1] < 192):
                     return False
                 i += 2
 
-            elif binary_data[i][0:4] == '1110':
-                if (binary_data[i + 1][0:2] != '10' and
-                        binary_data[i + 2][0:2] != '10'):
+            elif 224 <= data[i] <= 239:
+                if not (128 <= data[i + 1] < 192 and
+                    128 <= data[i + 2] < 192):
                     return False
                 i += 3
 
-            elif binary_data[i][0:5] == '1111':
-                if (binary_data[i + 1][0:2] != '10' and
-                        binary_data[i + 2][0:2] != '10' and
-                        binary_data[i + 3][0:2] != '10'):
+            elif 240 <= data[i] <= 255:
+                if not (128 <= data[i + 1] < 192 and
+                    128 <= data[i + 2] < 192 and
+                    128 <= data[i + 3] < 192):
                     return False
                 i += 4
-            else:
-                return False
 
         except Exception:
             return False
