@@ -11,6 +11,9 @@ def validUTF8(data):
     '''
     if not data:
         return False
+    
+    if max(data) > 247:
+        return False
 
     i = 0
     while i < len(data):
@@ -35,7 +38,7 @@ def validUTF8(data):
                     return False
                 i += 3
 
-            elif 240 <= data[i] <= 255:
+            elif 240 <= data[i] <= 247:
                 if not (128 <= data[i + 1] < 192 and
                         128 <= data[i + 2] < 192 and
                         128 <= data[i + 3] < 192):
