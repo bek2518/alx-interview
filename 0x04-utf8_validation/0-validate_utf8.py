@@ -39,7 +39,7 @@ def validUTF8(data):
                     return False
                 i += 3
 
-            elif 240 <= data[i] <= 247:
+            elif 240 <= data[i] <= 255:
                 if not (128 <= data[i + 1] < 192 and
                         128 <= data[i + 2] < 192 and
                         128 <= data[i + 3] < 192):
