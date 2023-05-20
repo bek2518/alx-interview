@@ -10,13 +10,12 @@ def validUTF8(data):
     1 byte of data and determines if valid UTF-8
     '''
     if not data:
-        return False
-
-    if max(data) > 247:
-        return False
+        return True
 
     i = 0
     while i < len(data):
+        if data[i] > 255:
+            data[i] = data[i] - 255
         try:
             if data[i] < 128:
                 i += 1
