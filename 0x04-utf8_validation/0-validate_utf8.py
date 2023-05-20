@@ -14,6 +14,8 @@ def validUTF8(data):
 
     i = 0
     while i < len(data):
+        if data[i] > 255:
+            data[i] = data[i] - 256
         try:
             if data[i] < 128:
                 i += 1
