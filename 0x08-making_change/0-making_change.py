@@ -12,14 +12,14 @@ def makeChange(coins, total):
     '''
     if (total <= 0):
         return (0)
-    coins.sort(reverse=True)
-    counter = 0
-    for i in range(len(coins)):
-        if (coins[i] > total):
-            break
-        while (coins[i] <= total):
-            total = total - coins[i]
-            counter += 1
-    if (total > 0):
-        return (-1)
-    return counter
+    coinList = [total + 1] * (total + 1)
+    coinList[0] = 0
+
+    for coin in coins:
+        for amount in range(coin, total + 1):
+            coinList[amount] = min(coinList[amount],
+                                   (coinList[amount - coin] + 1))
+
+    if (coinList[total] == total + 1):
+        return -1
+    return coinList[total]
