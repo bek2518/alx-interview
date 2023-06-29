@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 '''
 Python program that determines the winner of the game prime number
 played between two players
