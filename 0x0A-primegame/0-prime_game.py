@@ -18,6 +18,9 @@ def isWinner(x, nums):
         currentPlayer = 'Maria'
         integers = []
 
+        if nums[i] == 0:
+            break
+
         for j in range(1, nums[i] + 1):
             integers.append(j)
 
