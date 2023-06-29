@@ -17,6 +17,7 @@ def isWinner(x, nums):
     for i in range(0, x):
         currentPlayer = 'Maria'
         integers = []
+
         for j in range(1, nums[i] + 1):
             integers.append(j)
 
@@ -32,7 +33,7 @@ def isWinner(x, nums):
     elif (Ben > Maria):
         return('Ben')
     else:
-        return('Draw')
+        return(None)
 
 
 def switchPlayer(currentPlayer):
