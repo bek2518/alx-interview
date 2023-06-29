@@ -3,8 +3,6 @@
 Python program that determines the winner of the game prime number
 played between two players
 '''
-import sys
-sys.setrecursionlimit(10**6)
 
 
 def isWinner(x, nums):
@@ -52,7 +50,7 @@ def recursiveFunction(integers, currentPlayer):
     Recursive function that removes a number and its multiples
     till only one remains
     '''
-    if (len(integers) > 1):
+    while (len(integers) > 1):
         toBeDeleted = []
         for i in range(len(integers)):
             if ((integers[i] % integers[1]) == 0):
@@ -62,7 +60,6 @@ def recursiveFunction(integers, currentPlayer):
             integers.remove(toBeDeleted[i])
 
         currentPlayer = switchPlayer(currentPlayer)
-        return(recursiveFunction(integers, currentPlayer))
 
     currentPlayer = switchPlayer(currentPlayer)
     return (currentPlayer)
