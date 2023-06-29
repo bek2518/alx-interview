@@ -3,6 +3,8 @@
 Python program that determines the winner of the game prime number
 played between two players
 '''
+import sys
+sys.setrecursionlimit(10**6)
 
 
 def isWinner(x, nums):
